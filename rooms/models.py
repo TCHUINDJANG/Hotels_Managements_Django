@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+# from  .models import Guest
 
 # Create your models here.
 
@@ -17,3 +19,12 @@ class Room(models.Model):
 
     def __str__(self):
         return f"Room {self.number} ({self.get_room_type_display})"
+    
+
+
+class Booking(models.Model):
+    roomNumber = models.ForeignKey(Room , on_delete=models.CASCADE)
+    # guests = models.ForeignKey(Guest, null=True, on_delete=models.CASCADE)
+    dtaOfReservation = models.DateField(default=timezone.now)
+    startDate = models.DateField()
+    endDate = models.DateField()
